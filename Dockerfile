@@ -6,4 +6,4 @@ COPY ${JAR_FILE} app.jar
 ARG SPRING_PROFILE=local
 ENV SPRING_PROFILE=$SPRING_PROFILE
 
-ENTRYPOINT ["java", "Dspring.profile.active=${SPRING_PROFILE}", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-Dspring.profile.active=${SPRING_PROFILE}", "-jar", "/app.jar"]
