@@ -49,6 +49,7 @@ jobs:
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
 
+
       ### CD ###
       # 3. EC2에 Docker 컨테이너 작업
       # (3-1) Get GitHub IP
