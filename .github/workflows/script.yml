@@ -64,7 +64,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      # (3-3) Add github ip to AWS
+      # (3-3) Add GitHub ip to AWS
       - name: Add GitHub IP to AWS
         run: |
           aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
@@ -85,7 +85,7 @@ jobs:
 #           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
             sudo docker run -it -d -p 8080:8080 --name github-actions-demo ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
-      # (3-5) Remove Github IP from security group
+      # (3-5) Remove GitHub IP from security group
       - name: Remove IP FROM security group
         run: |
           aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
