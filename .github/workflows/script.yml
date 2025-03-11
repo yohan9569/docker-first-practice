@@ -78,11 +78,12 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_SSH_PORT }}
           timeout: 60s
+          # script 안에서 "#" 주석 indentation 지켜야 문제가 안 생긴다. script 안에서 갑자기 script 바깥 yml의 주석이 나와서 문제가 된 것 같다.
           script: |
             sudo docker stop github-actions-demo
             sudo docker rm github-actions-demo
             sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
-          # sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
+            # sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
             sudo docker run -it -d -p 8080:8080 --name github-actions-demo ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
       # (3-5) Remove GitHub IP from security group
